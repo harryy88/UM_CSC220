@@ -126,7 +126,7 @@ public class Matrix {
 		Matrix addy = new Matrix(m.numRows, m.numColumns); 
 		for(int row = 0; row< numRows; row++) {
 			for (int col = 0; col < numColumns; col++ ) {
-				addy.data[row][col] = data[row][col] + m.data[row][col] +7 ;
+				addy.data[row][col] = data[row][col] + m.data[row][col];
 			}
 			
 		}
