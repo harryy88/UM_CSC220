@@ -6,22 +6,25 @@ public class Matrix {
 	int data[][];
 	
 	// default constructor
-	public Matrix(){
-		
-	}
+	
 	// constructor 1 - Constructor for new zero matrix
 	
 	public Matrix(int rowDim, int colDim){
-		if (rowDim >= 0 || colDim >= 0) {
+		if (rowDim >= 0 && colDim >= 0) {
 			this.numRows = rowDim;
 			this.numColumns = colDim;
 			data = new int[rowDim][colDim];
+			
+		}
+		else {
+			data = new int[1][1];
+			
 		}
 		/*
 		* TODO: write a constructor that would create a matrix
 		* of correct size and initialize it to 0. 
 		*/
-		  
+		 
 	}
 	
 	
@@ -30,11 +33,16 @@ public class Matrix {
 	{
 		numRows = d.length;
 		numColumns = d[0].length; 
-		data = new int[numRows][numColumns];
-		for(int row = 0; row< numRows; row++) {
-			for (int col = 0; col < numColumns; col++ ) {
-				data[row][col] = d[row][col] ;
+		if (numRows > 0 && numColumns > 0) {
+			data = new int[numRows][numColumns];
+			for(int row = 0; row< numRows; row++) {
+				for (int col = 0; col < numColumns; col++ ) {
+					data[row][col] = d[row][col] ;
+				}
 			}
+		}
+		else {
+			data = new int[1][1];
 			
 		}
 		/* 1) put the numRows to be the number of 1D arrays in the 2D array
