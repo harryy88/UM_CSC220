@@ -103,7 +103,11 @@ public class Library {
    */
   public String lookup(long isbn) {
     // *FILL IN -- do not return null unless appropriate
-
+	for (LibraryBook b : library) {
+		if (b.getIsbn() == isbn) {
+			return b.getHolder();
+		}
+	}
     return null;
   }
 
