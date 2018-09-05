@@ -1,9 +1,9 @@
 package lab03;
 
 //import java.io.File;
-import java.io.FileNotFoundException;
-import java.text.ParseException;
-import java.util.ArrayList;
+//import java.io.FileNotFoundException;
+//import java.text.ParseException;
+//import java.util.ArrayList;
 import java.util.GregorianCalendar;
 //import java.util.Scanner;
 
@@ -15,8 +15,8 @@ public class LibraryBook extends Book {
 	
 	public LibraryBook(long isbn, String author, String title){
 		super(isbn, author, title);
-		//*********
-		this.dueDate = null;
+		this.holder = null; 
+		this.dueDate = null; 
 	}
 	public String getHolder() {
 		return this.holder;
