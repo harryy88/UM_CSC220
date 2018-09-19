@@ -74,12 +74,12 @@ public class LibraryGenericTest {
     System.out.println("Testing done.");
 
       // test a medium library
-//    LibraryGeneric<String> lib3 = new LibraryGeneric<String>();    
-//    lib3.addAll("Mushroom_Publishing.txt");
+    LibraryGeneric<String> lib3 = new LibraryGeneric<String>();    
+    lib3.addAll("Mushroom_Publishing.txt");
     
     // FILL IN for tests    
-//    ArrayList<LibraryBookGeneric<PhoneNumber>> ordered = lib2.getInventoryList();
-//    System.out.print(ordered);
+    //ArrayList<LibraryBookGeneric<PhoneNumber>> ordered = lib2.getInventoryList();
+    //System.out.print(ordered);
     
   }
 }

@@ -287,7 +287,7 @@ public class LibraryGeneric<Type> {
 	  copy.addAll(library);
 	  OrderByAuthor comparator = new OrderByAuthor();
 	  sort(copy, comparator);
-
+	 
 	  return copy;
    	  
   
@@ -307,7 +307,7 @@ public class LibraryGeneric<Type> {
 	  GregorianCalendar due = new GregorianCalendar(day, month, year);
 	  for (LibraryBookGeneric<Type> b : library) {
 		  GregorianCalendar date = b.getDueDate();
-		  if (date.compareTo(due) > 1) {
+		  if (date.compareTo(due) > 0) {
 			  copy.add(b);
 		  }
 	  }
@@ -332,8 +332,13 @@ public class LibraryGeneric<Type> {
 	  public int compare(LibraryBookGeneric<Type> b1, LibraryBookGeneric<Type> b2) {
 		  String s1 = b1.getAuthor(); 
 		  String s2 = b2.getAuthor(); 
+		  String t1 = b1.getTitle();
+		  String t2 = b2.getTitle();
 		  if (s1.compareTo(s2) == 0) {
-			  return 0;
+			  if (t1.compareTo(t2) > 0 ) {
+				  return 1; 
+			  }
+			  return -1; 
 		  }
 		  else if(s1.compareTo(s2) > 0){
 			  return 1;
