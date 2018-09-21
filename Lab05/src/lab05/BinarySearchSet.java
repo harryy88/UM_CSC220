@@ -43,21 +43,27 @@ public class BinarySearchSet {
 	}
 	public boolean remove(double value) {
 		 
-		for (int i = 0; i < storage.length; i++) {
-			if (storage[i] == value) {
+		for (int i = 0; i < numItems; i++) {
+			if (storage[i] == value && capacity > 1) {
 				double[] temp = new double[capacity - 1];
 				for (int j = 0; j < i; j++) {
 					temp[j] = storage[j];
 				}
-				for (int k = i + 1; k < temp.length; k++) {
+				for (int k = i + 1; k < numItems; k++) {
 					temp[k-1] = storage[k];
 				}
-				temp[temp.length-1] = storage[storage.length-1];
+				//temp[temp.length-1] = storage[storage.length-1];
 				storage = temp; 
-				--capacity; 
-				numItems = numItems == 0 ? 0 : numItems-1 ; 
+				--capacity;
+				--numItems; 
+				
 			
 				return true; 
+			}
+			if (storage[i] == value && capacity == 1) {
+				storage = new double[1];
+				capacity = 1; 
+				numItems = 0; 
 			}
 		}
 		
@@ -65,87 +71,96 @@ public class BinarySearchSet {
 	}
 	public boolean sequential_add(double newVal) {
 		/*		
-		*if this list does not contain the newVal, add it to the correct
+		*if this list does not contain  newVal, add to  correct
 		position of the list and return true
 		
-		*remember that the list is required to be sorted at all times –
-		that specifies the correct position for the newVal
+		*list is required to be sorted at all times –
 		
 		*returns false, if the list already includes the value
 		
-		*use a sequential search in this phase (you will write an
-		efficient add for your assignment)
-		
-		*be careful about what states need to be changed after the remove 
-		*/
-//		double[] t = new double[] {1,3,5,7,9,0};
-//		storage = t; 
-//		numItems = 5; 
-//		
-		for (int i = 0; i < numItems; i++) {
-			if (storage[i] == newVal) {
-				return false; 
-			}
-		}
-		
-		if (capacity == numItems){ grow();  }
+		*use a sequential search in this phase 
+
+		*/	
 		
 		if (numItems == 0) { 
-			storage[0] = newVal; 
-			numItems++; 
+			add(newVal, 0);
 			return true; 
 		}
-		if (numItems == 1) {
-			if (storage[0] > newVal) {
-				storage[1] = storage[0];
-				storage[0] = newVal;
-			}
-			else {
-				storage[1] = newVal;
-			}
-			numItems++; 
-			return true;
-		}
+	
 		
 		int lower = 0; 
-		if (newVal < storage[lower]) {
-			double[] temp = new double[capacity];
-			temp[0] = newVal; 
-			for (int j = 1; j < numItems; j++) {
-				temp[j] = storage[j-1];	
-			}
-			storage = temp;
-			numItems += 1; 
-			return true;  
-		}
-	
-		while (lower <= numItems -1 ) {
-			
-			if (storage[lower] < newVal && storage[lower+1] > newVal) {
-				double[] temp = new double[capacity];
-				for (int i = 0; i <= lower; i++) {
-					temp[i] = storage[i];
-				}
-				temp[lower+1] = newVal; 
-				for (int j = lower + 2; j < capacity; j++) {
-					temp[j] = storage[j-1];
-				}
-				numItems++; 
-				storage = temp; 
+		while (lower < numItems ) {
+			if (newVal < storage[lower]) {
+				add(newVal, lower);
 				return true; 
 			}
-			else {
-			
-				lower++; 
-				
+			++lower; 
+	
+		}
+		add(newVal, numItems);
+		return true; 
+	
+	}
+	
+	
+	public void add(double value, int index) {
+		
+		for (int i = 0; i < numItems; i++) {
+			if (storage[i] == value) {
+				return; 
 			}
-			
 		}
 		
-		storage[numItems - 1] = newVal; 
-		numItems += 1;
-		 
-		return true; //implement
+		if (capacity == numItems)	{ grow();  }
+		
+		double[] temp = new double[capacity];
+		
+		for (int i = 0; i < index; i++) {
+			temp[i] = storage[i];
+		}
+		temp[index] = value; 
+		
+		for (int j = index; j < numItems; j++){
+			temp[j + 1] = storage[j];
+		}
+		storage = temp; 
+		++numItems; 
+		return; 
+		
+	}
+	
+	
+	public boolean binary_add(double newVal) {
+		
+		//implement
+		int min = 0, mid,  max = numItems;
+		
+		if (newVal < storage[min])	{ add(newVal, min);}
+		if (newVal > storage[max -1 ])	{ add(newVal, max);}
+		
+		while (min <= max) {
+			mid = (min + max) / 2; 
+			if (newVal > storage[mid]) {
+				if (newVal > storage[mid + 1]) {
+					min = mid; 
+				}
+				else {
+					add(newVal, mid + 1);
+					return true; 
+				}
+			}
+			else {   //newVal <= storage[mid]
+				if (newVal < storage[mid -1]) {
+					max = mid; 
+				}
+				else {
+					add(newVal, mid);
+					return true; 
+				}
+			}
+		
+		}
+		return false; 
 	}
 	
 	public boolean contains(double value) {
@@ -179,7 +194,7 @@ public class BinarySearchSet {
 //	- this method must take advantage of the list being sorted and use
 //		a binary search to determine if an item is in the array.
 		for (double el : elements) {
-			if ( !this.contains(el)) {
+			if ( !this.contains(el)) {  //this calls contains which implements the binary search to find 
 				return false; 
 			}
 		}
