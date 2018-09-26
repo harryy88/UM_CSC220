@@ -134,9 +134,18 @@ public class BinarySearchSet {
 		
 		//implement
 		int min = 0, mid,  max = numItems;
-		
-		if (newVal < storage[min])	{ add(newVal, min);}
-		if (newVal > storage[max -1 ])	{ add(newVal, max);}
+		if (numItems == 0) { 
+			add(newVal, 0);
+			return true; 
+		}
+		if (newVal < storage[min])	{ 
+			add(newVal, min);
+			return true; 
+		}
+		if (newVal > storage[max -1 ])	{
+			add(newVal, max);
+			return true; 
+		}
 		
 		while (min <= max) {
 			mid = (min + max) / 2; 
@@ -213,13 +222,19 @@ public class BinarySearchSet {
 	- the input might not be sorted. Hint: think whether you can
 	reuse any of the methods you have implemented to make your
 	job easier.
-	*/
+	*/if (input.length > 0) {
 		storage = new double[input.length];
 		capacity = input.length;
 		numItems = 0; 
 		for (double d : input) {
 			sequential_add(d);
 		}
+	  }
+	else {
+		storage = new double[6];
+		capacity = 6;
+		numItems = 0;
+	}
 		
 		
 	}

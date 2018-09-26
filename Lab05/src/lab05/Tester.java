@@ -3,23 +3,21 @@ package lab05;
 public class Tester {
 	public static void main(String args[]) {
 		
-		double[] boo = new double[] {3,6};
+		double[] boo = new double[] {};
 		
 		BinarySearchSet yoo = new BinarySearchSet(boo); 
 		
-		yoo.binary_add(7);
-		yoo.binary_add(7);
-		yoo.binary_add(.7);
-		yoo.binary_add(12);
-		yoo.binary_add(949);
-		yoo.binary_add(867);
-		yoo.remove(949);
-		yoo.binary_add(950);
-		
-		yoo.sequential_add(97);
-		System.out.println(yoo.contains(12));
+
+		yoo.binary_add(1);
+		yoo.binary_add(3);
+		yoo.binary_add(6);
+		yoo.binary_add(0);
+		yoo.binary_add(2);
+		yoo.binary_add(0);
 	
-		System.out.println(yoo.toString());
+		
+	
+		System.out.println(yoo.isEmpty());
 		
 		
 		
