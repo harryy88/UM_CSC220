@@ -2,12 +2,15 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
+		<item value="print" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="print"/>
+			<item value="OrderByIsbn"/>
+			<item value="compare"/>
 			<item value="21"/>
 			<item value="7"/>
 			<item value="month"/>
@@ -20,7 +23,6 @@
 			<item value="sting"/>
 			<item value="false"/>
 			<item value="equ"/>
-			<item value="double flip = Math.random(); if (flip &lt; 0.505) {"/>
 		</list>
 		<list key="replacehistory">
 		</list>
